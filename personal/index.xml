@@ -5,10 +5,22 @@
     <link>https://www.calmdownkarm.com/personal/</link>
     <description>Recent content in Personal on Perpetual White Belt</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 03 Jun 2019 09:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Thu, 19 Dec 2019 14:48:20 +0530</lastBuildDate>
     
 	<atom:link href="https://www.calmdownkarm.com/personal/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Delhi Protests</title>
+      <link>https://www.calmdownkarm.com/personal/delhi-protests/</link>
+      <pubDate>Thu, 19 Dec 2019 14:48:20 +0530</pubDate>
+      
+      <guid>https://www.calmdownkarm.com/personal/delhi-protests/</guid>
+      <description>I&#39;m going to preface this by saying I know very little about politics.
+However, irrespective of your view of the legality of CAB and NRC - the steps that The Indian Government is taking to quell these protests are completely inexcusable.
+Shutting down Metro Stations, Imposing Section 144 and Preventing Internet/Mobile Access to prevent peaceful protests is excessive and should be illegal.
+At the moment, There is no internet in parts of UP - Sahranpur, Muzaffarnagar, Aligarh and Sambhal.</description>
+    </item>
     
     <item>
       <title>Splat</title>
@@ -47,18 +59,6 @@ Picture the lush, beautiful green grass slowly rushing towards you as a stranger
       
       <guid>https://www.calmdownkarm.com/personal/change/</guid>
       <description>Four years ago, I sat behind Engineering Hall on campus at the University of Illinois and the enormity of my fuck-up struck for the perhaps the first time. Over the course of a long year and a half I had made a series of bad decisions that ended up in my dropping out of one the best ranked engineering programs in the world, returning to India and starting all over.</description>
-    </item>
-    
-    <item>
-      <title>Comments Support</title>
-      <link>https://www.calmdownkarm.com/personal/comments-support/</link>
-      <pubDate>Thu, 29 Mar 2018 09:00:00 +0600</pubDate>
-      
-      <guid>https://www.calmdownkarm.com/personal/comments-support/</guid>
-      <description>Minimo has support for comments baked into it.
-Enable/Disable Comments Globally For enabling or disabling comments globally, check the following setting in your config.toml file:
-[params.comments] enable = false  params.comments [Map]:  enable [Boolean]: Enable/Disable comments globally    For Specific Posts The global .Site.Params.comments.enable setting can be overridden for specific posts in their content&#39;s frontmatter with this option:
---- comments: true ---  comments [Boolean]: Enable/Disable comments for specific posts  Of course, you&#39;ll also need to setup a comment system ( Disqus or Staticman ).</description>
     </item>
     
   </channel>

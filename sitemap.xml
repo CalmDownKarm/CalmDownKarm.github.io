@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://www.calmdownkarm.com/</loc>
-    <lastmod>2019-07-12T23:00:00+06:00</lastmod>
+    <lastmod>2019-12-19T14:48:20+05:30</lastmod>
   </url>
   
   <url>
@@ -19,7 +19,22 @@
   
   <url>
     <loc>https://www.calmdownkarm.com/personal/</loc>
-    <lastmod>2019-07-12T23:00:00+06:00</lastmod>
+    <lastmod>2019-12-19T14:48:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.calmdownkarm.com/personal/delhi-protests/</loc>
+    <lastmod>2019-12-19T14:48:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.calmdownkarm.com/tags/personal/</loc>
+    <lastmod>2019-12-19T14:48:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.calmdownkarm.com/tags/</loc>
+    <lastmod>2019-12-19T14:48:20+05:30</lastmod>
   </url>
   
   <url>
@@ -28,18 +43,8 @@
   </url>
   
   <url>
-    <loc>https://www.calmdownkarm.com/tags/</loc>
-    <lastmod>2019-07-12T23:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.calmdownkarm.com/tags/technical/</loc>
     <lastmod>2019-06-11T09:00:00+06:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.calmdownkarm.com/tags/personal/</loc>
-    <lastmod>2019-06-03T09:00:00+06:00</lastmod>
   </url>
   
   <url>
@@ -93,22 +98,16 @@
   </url>
   
   <url>
-    <loc>https://www.calmdownkarm.com/personal/comments-support/</loc>
-    <lastmod>2019-07-12T23:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.calmdownkarm.com/tags/config/</loc>
-    <lastmod>2019-07-12T23:00:00+06:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.calmdownkarm.com/page/</loc>
     <lastmod>2017-09-28T08:00:00+06:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.calmdownkarm.com/authors/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.calmdownkarm.com/tags/config/</loc>
   </url>
   
   <url>

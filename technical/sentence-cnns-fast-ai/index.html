@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='I&rsquo;ve recently started a personal challenge to read and implement 20 papers inside of a month. This is mainly to get used to writing deep learning models again (I&rsquo;ve spent most of the last few months doing web development for a couple of projects for the Delhi Government). Part of this is also to become more familiar with the PyTorch ecosystem and the tooling around it. Primarily - I&rsquo;m trying to find the pytorch equivalent of Keras, wherein it removes a lot of the boilerplate I would traditionally have to write, but still giving me the transparency that Pytorch happens.'>
+<meta name='theme-color' content='#ffcd00'>
+
+<meta property='og:title' content='Hacking Fastai v1, Sentence CNNs for Sentiment Classification • Perpetual White Belt'>
+<meta property='og:description' content='I&rsquo;ve recently started a personal challenge to read and implement 20 papers inside of a month. This is mainly to get used to writing deep learning models again (I&rsquo;ve spent most of the last few months doing web development for a couple of projects for the Delhi Government). Part of this is also to become more familiar with the PyTorch ecosystem and the tooling around it. Primarily - I&rsquo;m trying to find the pytorch equivalent of Keras, wherein it removes a lot of the boilerplate I would traditionally have to write, but still giving me the transparency that Pytorch happens.'>
+<meta property='og:url' content='https://www.calmdownkarm.com/technical/sentence-cnns-fast-ai/'>
+<meta property='og:site_name' content='Perpetual White Belt'>
+<meta property='og:type' content='article'><meta property='article:section' content='Technical'><meta property='article:tag' content='Technical'><meta property='article:published_time' content='2020-04-09T00:17:04&#43;05:30'/><meta property='article:modified_time' content='2020-04-09T00:17:04&#43;05:30'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.68.3" />
+
+  <title>Hacking Fastai v1, Sentence CNNs for Sentiment Classification • Perpetual White Belt</title>
+  <link rel='canonical' href='https://www.calmdownkarm.com/technical/sentence-cnns-fast-ai/'>
+  
+  
+  <link rel='icon' href='/images/something.ico'>
+<link rel='stylesheet' href='/assets/css/main.6a060eb7.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
+  
+
+</head>
+<body class='page type-Technical'>
+
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    
+    <ul><li class='item'>
+        <a href='/'>Home</a>
+      </li><li class='item'>
+        <a href='/technical/'>technical</a>
+      </li><li class='item'>
+        <a href='/nlp/'>NLP</a>
+      </li><li class='item'>
+        <a href='/personal/'>personal</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Perpetual White Belt</p><p class='desc site-desc'>Machine Learning, Data Visualization and Brazilian Jiu Jitsu</p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Hacking Fastai v1, Sentence CNNs for Sentiment Classification</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2020-04-09T00:17:04&#43;05:30'>2020, Apr 09</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+7 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  <p>I&rsquo;ve recently started a personal challenge to read and implement 20 papers inside of a month. This is mainly to get used to writing deep learning models again (I&rsquo;ve spent most of the last few months doing web development for a couple of projects for the Delhi Government). Part of this is also to become more familiar with the PyTorch ecosystem and the tooling around it. Primarily - I&rsquo;m trying to find the pytorch equivalent of Keras, wherein it removes a lot of the boilerplate I would traditionally have to write, but still giving me the transparency that Pytorch happens.</p>
+<p>To that end, I&rsquo;m looking at 2 libraries primarily - Fastai and Pytorch Lightening. I have very little experience with both of these, so as I write these models, I&rsquo;m going to swap off between each. In the little experience I do have - I really like the Pytorch Lightning method of having 1 class that encapsulates everything - but prefer the conviences that fastai brings - I don&rsquo;t need to use tensorboard, or grid search for learning rates or write my own triangular learning rate scheduler.</p>
+<h2 id="the-sentence-cnn">The Sentence CNN</h2>
+<p>The <a href="%5Bhttps://arxiv.org/abs/1408.5882%5D(https://arxiv.org/abs/1408.5882)">paper</a> was published in EMNLP 2014 and is a very straightforward technique to document/sentence classification. The basic idea is that you convert each word in your sentence/document to it&rsquo;s corresponding vector - stack them vertically on top of each other, stick them into a convolutional layer and use maxpooling to reduce each &lsquo;feature&rsquo; that the layers create before using a fully connected layer to do the actual classification.</p>
+<p>The original paper uses 3 sets of filters, with region sizes of 3,4,5 with a 100 feature maps each, before passing into ReLU for a non-linearity and a maxpool layer. it then concatenates all three pooled vectors and then passes it into a fully connected layer that reduces the 300 sized vector into however many output classes we need. It uses L2 weight regularization on the fully connected layer.</p>
+<p>Subsequent to it&rsquo;s original release, there&rsquo;s been two interesting papers - the first is <a href="%5Bhttps://arxiv.org/pdf/1510.03820.pdf%5D(https://arxiv.org/pdf/1510.03820.pdf)">A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification</a> which mentions that L2 regularization isn&rsquo;t that useful at all, and that the filter sizes need to be tuned to each particular dataset and that the width of the filter region should be between 1 and 10. To me this seems intuitive - the convolutional filters act like a N-gram window over the input sentence. The second paper is <a href="%5Bhttps://arxiv.org/pdf/1711.05101.pdf%5D(https://arxiv.org/pdf/1711.05101.pdf)">Decoupled Weight Decay Regularization</a> which I haven&rsquo;t read very closely, but I think it implies that the default pytorch implementation of weight decay in the adam optimizer is actually l2 regularization. (Pytorch offers the AdamW optimizer with the weight decay algorithm that this paper suggests) but taking these two together, I decided not to use weight normalization.</p>
+<p>The fastai library is built upon the idea of having different layers - the higher layer api does very specific things intended for use with their prebuilt models. The lower layers are intended to be sort of lego blocks that can be used to assemble custom pipelines. Technically I should be using their lower level apis, but the higher level apis are just too convenient to not use.</p>
+<p>The default TextClasDataBunch for fastai v1 uses the spacy tokenizer and has some default preprocessing rules for text. It also shuffles the dataset and collects equal length sentences in order to minimize the amount of padding per batch. This works great for an RNN, where I can have variable input sequences, however for a CNN, the input size for every batch needs to be the same. So the typical approach is to figure out the most common sequence length in the dataset (histograms are great for this) and padding/trimming each of the sentences that aren&rsquo;t that length. To do this, I added a another rule. The post tokenization rules are all functions that take in an iterable/collection of tokens and return another collection/iterable of the transformed tokens.</p>
+<pre><code># Create the rule
+def pad_to_length(in_seq):
+# PAD is the fastai constant that represents the string xxpad
+    N = 250
+    return (in_seq + N * [PAD])[:N]
+
+# Append it to the list of default rules
+defaults.text_post_rules.append(pad_to_length)
+</code></pre>
+<p>Each of the data bunches has a bunch of factory methods that similar to pandas, specify how the data is stored on disk.</p>
+<p>In this case, my data (the IMDB movie review sentiment dataset - specifically, a subset of the dataset so that I can test and run the model relatively quickly on a CPU) was stored was a csv file with the labels being the first column and the text being the second. However, using the .from_csv factory method was automatically converting the labels to LongTensors instead of FloatTensors. Perhaps the &lsquo;correct&rsquo; thing to do would be to use a callback to my fit function and manually cast the y tensors to Floats but it was easier to just use the from_df constructor and manually map the labels to floats</p>
+<pre><code>map_labels = {'negative': 0.0, 'positive': 1.0}
+frame = pd.read_csv(path/'texts.csv')
+frame['label'] = frame['label'].map(map_labels)
+train_frame = frame[~frame['is_valid']]
+valid_frame = frame[frame['is_valid']]
+print(train_frame.shape, valid_frame.shape)
+# create the databunch
+dc = TextClasDataBunch.from_df(path, train_df=train_frame,
+                               valid_df=valid_frame,
+                               test_df=valid_frame,
+                               max_vocab=16864, min_freq=1, bs=32)
+</code></pre>
+<p>A slightly curious thing about this entire process is that the vocabulary object that fastai creates has two properties - an itos property which is just a list of the tokens in your dataset and an stoi property which is a dictionary that maps each word to the index in itos. The strange thing is that if you call length on the itos and stoi object, you get different numbers. At first I thought this was because you can set a minimum frequency of tokens on the data - and that stoi would first map the entire dataset using a defaultdict/counter and that itos just kept the ones that crossed that threshold. The source however specifies that stoi is populated after itos is. Even weirder, if I call max(vocab.stoi.values) or len(vocab.stoi.values) I actually get a number that matches the length of itos. Not really sure what&rsquo;s going on here, but it doesn&rsquo;t particularly matter? the mappings in stoi all match the indexes in itos correctly.</p>
+<p>Anyway, an important part of sentence CNNs is to use vectors for every word - these can be 1 hot vectors, however the standard practise is to use pretrained wordvectors like Glove, Fasttext and Word2Vec. People typically use libraries like gensim to get these vectors - but I find the gensim api very confusing. I much prefer this lesser known library called <a href="%5Bhttps://github.com/plasticityai/magnitude%5D(https://github.com/plasticityai/magnitude)">pymagnitude</a> which essentially stores vectors in sqlite files and you can query vectors by passing the words. The github page for the library also has download links for a bunch of pretrained word vectors. The way the vectors are used is that you create an embedding layer in pytorch and that acts as the first layer of the network. You pass this embedding layer a matrix that has the same index as your vocabulary and is the size of the vector. This means that if you have a vocabulary of a thousand words and vectors of 300 dimensions, you&rsquo;d pass it a matrix of 1000 x 300.  Pymagnitude makes creating this really easy -</p>
+<pre><code>vectors = Magnitude('TextDatasets/wiki-news-300d-1M-subword.magnitude')
+weights = torch.from_numpy(vectors.query(dc.vocab.itos))
+</code></pre>
+<p>so my model then looks like</p>
+<pre><code>class CNN(nn.Module):
+    def __init__(self, embedding_dim, n_filters, filter_sizes, output_dim, weights, sentence_len, dropout):
+        super().__init__()
+        self.embedding = nn.Embedding.from_pretrained(weights, freeze=False,)
+        self.conv_layers = [
+            nn.Sequential(
+                nn.Conv2d(in_channels=1, out_channels=n_filters, kernel_size=(filter_size, embedding_dim)),
+                nn.ReLU())
+            for filter_size in filter_sizes
+        ]
+        self.pooling_layers = [nn.MaxPool1d(sentence_len - fs + 1) for fs in filter_sizes]
+        self.fc = nn.Linear(len(filter_sizes) * n_filters, output_dim)
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, x):
+        # [batch size, sent len]
+        embedded = self.embedding(x)
+        # [batch size, sent len, emb dim]
+        embedded = embedded.unsqueeze(1)
+        # [batch size, 1, sent len, emb dim]
+        feature_maps = [conv(embedded).squeeze(3) for conv in self.conv_layers]
+        # 3 [batch size, n_filters, sent len - filter_sizes[n] + 1]
+        pooled_layers = [pool(feature_map).squeeze(2) 
+            for pool, feature_map in zip(self.pooling_layers, feature_maps)]
+        # [batch size, n_filters]
+        cat = self.dropout(torch.cat((pooled_layers), dim = 1))
+        # [batch size, n_filters * len(filter_sizes)]  
+        return self.fc(cat).squeeze()
+
+net = CNN(embedding_dim=300, 
+          n_filters=3, filter_sizes=[3,4,5], output_dim=1,
+          weights=weights, sentence_len=250, dropout=0.5)
+</code></pre>
+<p>Another strange thing is that if I want to move the model to a GPU - just calling net.cuda() to net.to(&lsquo;cuda&rsquo;) didn&rsquo;t work - I had to cast each layer in the net to cuda. Not sure why this is the case, though I suspect because nn.Sequential isn&rsquo;t really meant to be used inside of a class that inherits nn.Module - but this is a wild guess.</p>
+<p>Finally, we declare a learner, passing it the databunch, loss function and custom model.</p>
+<pre><code>learner = Learner(dc, net, loss_func=loss_func, path=path)
+</code></pre>
+<p>We can then use the typical fastai tools - LR Finder and Fit One Cycle to train the model, learner.save and export to persist the models to dict and any of the fastai callbacks for checkpointing, accuracy calculation etc.</p>
+<pre><code>learner.lr_find()
+learner.recorder.plot()
+learner.fit_one_cycle(10, 5e-3)</code></pre>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/technical/'>Technical</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/technical/text-lessons/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Lessons from a weekend of failing to handle a non-trivial amount of text</a>
+    </div></div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/calmdownkarm' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/karmanya' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:karmanyaaggarwal@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/calmdownkarm' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://scholar.google.com/citations?user=A0d2Ji8AAAAJ' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Google_scholar account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M21.328 2.002v9.2M8.695 7.85c.014-.787-.11-2.236.28-2.89.623-1.045.856-1.39 1.797-1.989 1.953-.988 4.296.692 4.296.692.803.564 1.672 2.1 1.672 2.1l1.368-1.824-5.444-1.754-3.515 1.34L6.08 7.681m9.109 3.42s.65-.633 1.168-1.085c.461-.402.516-.714.6-.914.18-.426.268-.909.268-1.446 0-.7-.131-1.274-.388-1.735-.031-.053 0 0-.097-.157l4.588-3.762H10.32L3.672 7.85l5.023-.024c.23 1.237.619 1.575 1.019 2.222.744.719 1.13 1.194 2.215 1.194.254 0 2.6-.057 2.842-.09 0 0 .546 1.199-.133 1.71-.41.31.576 1.304.576 1.304s-5.577.831-6.523 1.427a4.13 4.13 0 0 0-1.306 1.277 3.034 3.034 0 0 0-.493 1.665c0 .502.106.955.32 1.357.214.403.493.733.84.99.345.258.744.473 1.194.649.45.174.896.297 1.342.367a8.348 8.348 0 0 0 3.41-.166 7.754 7.754 0 0 0 1.964-.807 4.28 4.28 0 0 0 1.49-1.443c.38-.609.57-1.292.57-2.049 0-.574-.116-1.096-.347-1.57a3.755 3.755 0 0 0-.847-1.164c-.335-.302-2.19-1.837-2.19-1.837"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p>Minimo Theme &copy; 2017-2020 MunifTanjim </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.67d669ac.js'></script><script src='/js/custom.js'></script>
+
+</body>
+
+</html>
+

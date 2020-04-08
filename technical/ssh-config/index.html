@@ -2,18 +2,18 @@
 <html lang='en'><head>
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='I&#39;m spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.
-So this time around, I&#39;m simply recreating each of the notebooks as quickly as I can, but ensuring that I&#39;m actually implementing everything myself as compared to just running cells in their notebooks'>
+<meta name='description' content='I&rsquo;m spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.
+So this time around, I&rsquo;m simply recreating each of the notebooks as quickly as I can, but ensuring that I&rsquo;m actually implementing everything myself as compared to just running cells in their notebooks'>
 <meta name='theme-color' content='#ffcd00'>
 
 <meta property='og:title' content='SSH Configurations • Perpetual White Belt'>
-<meta property='og:description' content='I&#39;m spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.
-So this time around, I&#39;m simply recreating each of the notebooks as quickly as I can, but ensuring that I&#39;m actually implementing everything myself as compared to just running cells in their notebooks'>
+<meta property='og:description' content='I&rsquo;m spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.
+So this time around, I&rsquo;m simply recreating each of the notebooks as quickly as I can, but ensuring that I&rsquo;m actually implementing everything myself as compared to just running cells in their notebooks'>
 <meta property='og:url' content='https://www.calmdownkarm.com/technical/ssh-config/'>
 <meta property='og:site_name' content='Perpetual White Belt'>
 <meta property='og:type' content='article'><meta property='article:section' content='Technical'><meta property='article:tag' content='Technical'><meta property='article:published_time' content='2018-09-16T09:00:00&#43;06:30'/><meta property='article:modified_time' content='2018-09-16T09:00:00&#43;06:30'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.61.0" />
+<meta name="generator" content="Hugo 0.68.3" />
 
   <title>SSH Configurations • Perpetual White Belt</title>
   <link rel='canonical' href='https://www.calmdownkarm.com/technical/ssh-config/'>
@@ -99,11 +99,11 @@ So this time around, I&#39;m simply recreating each of the notebooks as quickly 
   
 
   <div class='container entry-content'>
-  <p>I'm spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.</p>
-<p>So this time around, I'm simply recreating each of the notebooks as quickly as I can, but ensuring that I'm actually implementing everything myself as compared to just running cells in their notebooks</p>
-<p>Since I don't have a GPU on my laptop, I'm using the server that the <a href="http://midas.iiitd.edu.in/">MIDAS team @IIIT Delhi</a> gave me access to.</p>
-<p>The server they have is paltry compared to the insane amounts of computation groups like OpenAI and Google mention so casually in their blog posts and papers - but it's significantly more than what I need at the moment. Prior to this, I used a Paperspace account, and still have one, but the significant advantage I have here is that I can edit files on the server in real time since the latency is much lower.</p>
-<p>Whether I'm using paper space or this server, I wanted to document a little setup that makes getting a notebook up and running even faster than manually running through each of the steps you normally have to do. Quite honestly, this is really trivial, but it shaves a few seconds off my time, so I thought I'd share.</p>
+  <p>I&rsquo;m spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.</p>
+<p>So this time around, I&rsquo;m simply recreating each of the notebooks as quickly as I can, but ensuring that I&rsquo;m actually implementing everything myself as compared to just running cells in their notebooks</p>
+<p>Since I don&rsquo;t have a GPU on my laptop, I&rsquo;m using the server that the <a href="http://midas.iiitd.edu.in/">MIDAS team @IIIT Delhi</a> gave me access to.</p>
+<p>The server they have is paltry compared to the insane amounts of computation groups like OpenAI and Google mention so casually in their blog posts and papers - but it&rsquo;s significantly more than what I need at the moment. Prior to this, I used a Paperspace account, and still have one, but the significant advantage I have here is that I can edit files on the server in real time since the latency is much lower.</p>
+<p>Whether I&rsquo;m using paper space or this server, I wanted to document a little setup that makes getting a notebook up and running even faster than manually running through each of the steps you normally have to do. Quite honestly, this is really trivial, but it shaves a few seconds off my time, so I thought I&rsquo;d share.</p>
 <h2 id="using-a-ssh-config-to-forward-jupyter-notebooks-on-the-server-to-my-localmachine">using a ssh config to forward jupyter notebooks on the server to my localmachine</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Host paperspace
      HostName 209.51.171.251  <span style="color:#75715e"># put your server&#39;s ip address/hostname here</span>
@@ -116,14 +116,14 @@ Host iiitd
      IdentityFile ~/.ssh/acer.pub
      User karmanya
      LocalForward <span style="color:#ae81ff">8888</span> localhost:8888
-</code></pre></div><p>This one is very straightforward, and the fast.ai course recommends that you do this in lesson 1 itself. What this does is allow to run to any terminal and simply type in <code>ssh iiitd</code> or <code>ssh paperspace</code> and connect to the server. You'd also need to add your ssh public key to an <code>authorized_hosts</code> file on your server.</p>
+</code></pre></div><p>This one is very straightforward, and the fast.ai course recommends that you do this in lesson 1 itself. What this does is allow to run to any terminal and simply type in <code>ssh iiitd</code> or <code>ssh paperspace</code> and connect to the server. You&rsquo;d also need to add your ssh public key to an <code>authorized_hosts</code> file on your server.</p>
 <h2 id="editing-the-bash-profile">Editing the bash profile</h2>
-<p>I don't see many people doing this, (and on the IIITD Server it doesn't make much sense since the server is always running) but on paperspace since you pay per hour, I turn the server off when I'm not using it.
+<p>I don&rsquo;t see many people doing this, (and on the IIITD Server it doesn&rsquo;t make much sense since the server is always running) but on paperspace since you pay per hour, I turn the server off when I&rsquo;m not using it.
 I add 2 lines to my <code>~/.profile</code> file in the server.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda activate fastai <span style="color:#f92672">&amp;&amp;</span> cd ~/fastai
 jupyter notebook
 </code></pre></div><p>What these do simple activate the conda environment, navigate to the directory where I keep all my notebooks and run jupyter from that directory. I started doing this after I noticed the lines that conda inserts into your <code>bashrc</code> file to explicitly remind you that you always have the base environment activated when you open a terminal and do python-y things. The reason this is in <code>.profile</code> and not <code>.bashrc</code> is that <code>bashrc</code> will cause the commands to run every time you open a terminal as opposed <code>.profile</code> or <code>.bash_profile</code> which will run every time I log into the server.</p>
-<p>This setup isn't permanent, in that I'll eventually move towards putting things into a docker image, since I've been on a docker kick after I saw jesse frazelle's <a href="https://www.youtube.com/watch?v=cYsVvV1aVss">really cool talk</a>, but yeah. It works well enough for now.</p>
+<p>This setup isn&rsquo;t permanent, in that I&rsquo;ll eventually move towards putting things into a docker image, since I&rsquo;ve been on a docker kick after I saw jesse frazelle&rsquo;s <a href="https://www.youtube.com/watch?v=cYsVvV1aVss">really cool talk</a>, but yeah. It works well enough for now.</p>
 
 </div>
 
@@ -220,7 +220,7 @@ jupyter notebook
       </li></ul>
   </nav>
 </section><div class='copyright'>
-  <p>Minimo Theme &copy; 2017-2019 MunifTanjim </p>
+  <p>Minimo Theme &copy; 2017-2020 MunifTanjim </p>
 </div>
 
         </div>

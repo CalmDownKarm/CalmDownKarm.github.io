@@ -2,16 +2,16 @@
 <html lang='en'><head>
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='A project underway at the lab in IIITDelhi that I&#39;m volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn&#39;t had a chance to test our TwitterRESTHandler yet.'>
+<meta name='description' content='A project underway at the lab in IIITDelhi that I&rsquo;m volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn&rsquo;t had a chance to test our TwitterRESTHandler yet.'>
 <meta name='theme-color' content='#ffcd00'>
 
 <meta property='og:title' content='A twitter bot under 20 lines of code and 30 lines of configuration • Perpetual White Belt'>
-<meta property='og:description' content='A project underway at the lab in IIITDelhi that I&#39;m volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn&#39;t had a chance to test our TwitterRESTHandler yet.'>
+<meta property='og:description' content='A project underway at the lab in IIITDelhi that I&rsquo;m volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn&rsquo;t had a chance to test our TwitterRESTHandler yet.'>
 <meta property='og:url' content='https://www.calmdownkarm.com/technical/twitterbot/'>
 <meta property='og:site_name' content='Perpetual White Belt'>
 <meta property='og:type' content='article'><meta property='article:section' content='Technical'><meta property='article:tag' content='Technical'><meta property='article:published_time' content='2018-10-16T09:00:00&#43;06:30'/><meta property='article:modified_time' content='2018-10-16T09:00:00&#43;06:30'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.61.0" />
+<meta name="generator" content="Hugo 0.68.3" />
 
   <title>A twitter bot under 20 lines of code and 30 lines of configuration • Perpetual White Belt</title>
   <link rel='canonical' href='https://www.calmdownkarm.com/technical/twitterbot/'>
@@ -97,56 +97,56 @@
   
 
   <div class='container entry-content'>
-  <p>A project underway at the lab in IIITDelhi that I'm volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn't had a chance to test our TwitterRESTHandler yet.
+  <p>A project underway at the lab in IIITDelhi that I&rsquo;m volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn&rsquo;t had a chance to test our TwitterRESTHandler yet.
 The source code is available <a href="https://github.com/Hitkul/Twitter_gramex_bot">here</a>, but the entire thing runs in 2 files - a <code>gramex.yaml</code> configuration file that configures the endpoints and the scheduler and a <code>twitterbot.py</code> file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">schedule:
-  run-every-hour:
-    function: twitterbot.make_requests   <span style="color:#75715e"># Log the current time</span>
-    minutes: <span style="color:#e6db74">&#39;*/1&#39;</span> <span style="color:#75715e"># Every minute</span>
-    hours: <span style="color:#e6db74">&#39;*&#39;</span>
-    startup: <span style="color:#e6db74">&#39;*&#39;</span>
-    thread: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">schedule</span>:
+  <span style="color:#66d9ef">run-every-hour</span>:
+    <span style="color:#66d9ef">function</span>: twitterbot.make_requests   <span style="color:#75715e"># Log the current time</span>
+    <span style="color:#66d9ef">minutes</span>: <span style="color:#e6db74">&#39;*/1&#39;</span> <span style="color:#75715e"># Every minute</span>
+    <span style="color:#66d9ef">hours</span>: <span style="color:#e6db74">&#39;*&#39;</span>
+    <span style="color:#66d9ef">startup</span>: <span style="color:#e6db74">&#39;*&#39;</span>
+    <span style="color:#66d9ef">thread</span>: <span style="color:#66d9ef">true</span>
 
-url:
-  twitter: 
-    pattern: /$YAMLURL/twitter/(.<span style="color:#75715e">*)</span>
-    handler: TwitterRESTHandler
-    kwargs:
-      key: ... <span style="color:#75715e"># API Keys from twitter</span>
-      secret: ...
-      access_key: ...
-      access_secret: ...
-      transform:
-        writetodisk:
-          function: twitterbot.writedisk
-    redirect:
-      header: Referer
-      url: /$YAMLURL/
+<span style="color:#66d9ef">url</span>:
+  <span style="color:#66d9ef">twitter</span>: 
+    <span style="color:#66d9ef">pattern</span>: /$YAMLURL/twitter/(.<span style="color:#75715e">*)</span>
+    <span style="color:#66d9ef">handler</span>: TwitterRESTHandler
+    <span style="color:#66d9ef">kwargs</span>:
+      <span style="color:#66d9ef">key</span>: ... <span style="color:#75715e"># API Keys from twitter</span>
+      <span style="color:#66d9ef">secret</span>: ...
+      <span style="color:#66d9ef">access_key</span>: ...
+      <span style="color:#66d9ef">access_secret</span>: ...
+      <span style="color:#66d9ef">transform</span>:
+        <span style="color:#66d9ef">writetodisk</span>:
+          <span style="color:#66d9ef">function</span>: twitterbot.writedisk
+    <span style="color:#66d9ef">redirect</span>:
+      <span style="color:#66d9ef">header</span>: Referer
+      <span style="color:#66d9ef">url</span>: /$YAMLURL/
 
-variables:
-  URLROOT: http://localhost:<span style="color:#ae81ff">9988</span>/twitter/search/tweets.json?q=
-  keywords:
+<span style="color:#66d9ef">variables</span>:
+  <span style="color:#66d9ef">URLROOT</span>: http://localhost:<span style="color:#ae81ff">9988</span>/twitter/search/tweets.json?q=
+  <span style="color:#66d9ef">keywords</span>:
     - gramener
     - python
 </code></pre></div><p>The gramex.yaml file defines 1 endpoint at <code>/twitter/</code> which exposes the TwitterRestHandler - by hitting this endpoint with the following arguments <code>/search/tweets.json</code> tells it to use the search API and setting <code>?q=&lt;keyword&gt;</code> tells it which keywords to search for. Unfortunately, I ended up hardcoding the url in the yaml itself - this would need to be changed if the bot is ever run on a different port - had I been able to use javascript, I would probably have just used relative urls instead.
-It also defines a scheduler which calls the <code>make_requests</code> function in <code>twitterbot.py</code> and schedules it to run every minute. setting <code>thread:</code> to <code>true</code> means that the function will run in a seperate thread - but the function itself runs on a single thread - if the set of keywords ever expands by a lot, we'd have to run each request through a threadpool/seperate process, but at the moment it isn't necessary.
-For completeness's sake, here's the python file as well, though there's nothing particularly special here</p>
+It also defines a scheduler which calls the <code>make_requests</code> function in <code>twitterbot.py</code> and schedules it to run every minute. setting <code>thread:</code> to <code>true</code> means that the function will run in a seperate thread - but the function itself runs on a single thread - if the set of keywords ever expands by a lot, we&rsquo;d have to run each request through a threadpool/seperate process, but at the moment it isn&rsquo;t necessary.
+For completeness&rsquo;s sake, here&rsquo;s the python file as well, though there&rsquo;s nothing particularly special here</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
 <span style="color:#f92672">import</span> json
 <span style="color:#f92672">import</span> requests
 <span style="color:#f92672">from</span> gramex.config <span style="color:#f92672">import</span> variables
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_requests</span>():
-    <span style="color:#66d9ef">for</span> keyword <span style="color:#f92672">in</span> variables[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">keywords</span><span style="color:#e6db74">&#39;</span>]:
-        r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>join([variables[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">URLROOT</span><span style="color:#e6db74">&#39;</span>], keyword]))
+    <span style="color:#66d9ef">for</span> keyword <span style="color:#f92672">in</span> variables[<span style="color:#e6db74">&#39;keywords&#39;</span>]:
+        r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join([variables[<span style="color:#e6db74">&#39;URLROOT&#39;</span>], keyword]))
     <span style="color:#66d9ef">return</span> r<span style="color:#f92672">.</span>status_code <span style="color:#75715e"># Yes, this will only return the last status code - </span>
                          <span style="color:#75715e"># but each request will get logged anyway so this return </span>
                          <span style="color:#75715e"># is essentially meaningless. </span>
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">writedisk</span>(result, handler):
     dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(__file__))
-    <span style="color:#66d9ef">with</span> open(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(dir, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">tweets.jsonl</span><span style="color:#e6db74">&#39;</span>), <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#39;</span>) <span style="color:#66d9ef">as</span> out:
-        <span style="color:#66d9ef">for</span> status <span style="color:#f92672">in</span> result[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">statuses</span><span style="color:#e6db74">&#39;</span>]:
+    <span style="color:#66d9ef">with</span> open(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(dir, <span style="color:#e6db74">&#39;tweets.jsonl&#39;</span>), <span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#66d9ef">as</span> out:
+        <span style="color:#66d9ef">for</span> status <span style="color:#f92672">in</span> result[<span style="color:#e6db74">&#39;statuses&#39;</span>]:
             json<span style="color:#f92672">.</span>dump(status, out)
     <span style="color:#66d9ef">return</span> result
 </code></pre></div>
@@ -245,7 +245,7 @@ For completeness's sake, here's the python file as well, though there's nothing 
       </li></ul>
   </nav>
 </section><div class='copyright'>
-  <p>Minimo Theme &copy; 2017-2019 MunifTanjim </p>
+  <p>Minimo Theme &copy; 2017-2020 MunifTanjim </p>
 </div>
 
         </div>

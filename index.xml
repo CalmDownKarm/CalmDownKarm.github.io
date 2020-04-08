@@ -5,7 +5,7 @@
     <link>https://www.calmdownkarm.com/</link>
     <description>Recent content in Home on Perpetual White Belt</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 19 Dec 2019 14:48:20 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2020 00:17:04 +0530</lastBuildDate>
     
 	<atom:link href="https://www.calmdownkarm.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -16,8 +16,17 @@
       <pubDate>Thu, 28 Sep 2017 08:00:00 +0600</pubDate>
       
       <guid>https://www.calmdownkarm.com/nlp/</guid>
-      <description>This page is primarily intended to document my notes about NLP, and be an aggregator of links that I&#39;d like to remember.
-My Blog Posts  CNNs for NLP  Useful External Links  indicnlp and inltk CS224n Deep Learning for NLP by Christopher Manning - Currently going through this, really amazing course, enjoying learning some of the math going on behind the scene Distill&#39;s post on Memorization in RNNs and LSTMs, their post on Attention - Distill is indubitably the gold standard in ml explanations today.</description>
+      <description>This page is primarily intended to document my notes about NLP, and be an aggregator of links that I&amp;rsquo;d like to remember.
+My Blog Posts  CNNs for NLP using fastai  Useful External Links  indicnlp and inltk CS224n Deep Learning for NLP by Christopher Manning - Currently going through this, really amazing course, enjoying learning some of the math going on behind the scene Distill&amp;rsquo;s post on Memorization in RNNs and LSTMs, their post on Attention - Distill is indubitably the gold standard in ml explanations today.</description>
+    </item>
+    
+    <item>
+      <title>Hacking Fastai v1, Sentence CNNs for Sentiment Classification</title>
+      <link>https://www.calmdownkarm.com/technical/sentence-cnns-fast-ai/</link>
+      <pubDate>Thu, 09 Apr 2020 00:17:04 +0530</pubDate>
+      
+      <guid>https://www.calmdownkarm.com/technical/sentence-cnns-fast-ai/</guid>
+      <description>I&amp;rsquo;ve recently started a personal challenge to read and implement 20 papers inside of a month. This is mainly to get used to writing deep learning models again (I&amp;rsquo;ve spent most of the last few months doing web development for a couple of projects for the Delhi Government). Part of this is also to become more familiar with the PyTorch ecosystem and the tooling around it. Primarily - I&amp;rsquo;m trying to find the pytorch equivalent of Keras, wherein it removes a lot of the boilerplate I would traditionally have to write, but still giving me the transparency that Pytorch happens.</description>
     </item>
     
     <item>
@@ -26,7 +35,7 @@ My Blog Posts  CNNs for NLP  Useful External Links  indicnlp and inltk CS224n De
       <pubDate>Thu, 19 Dec 2019 14:48:20 +0530</pubDate>
       
       <guid>https://www.calmdownkarm.com/personal/delhi-protests/</guid>
-      <description>I&#39;m going to preface this by saying I know very little about politics.
+      <description>I&amp;rsquo;m going to preface this by saying I know very little about politics.
 However, irrespective of your view of the legality of CAB and NRC - the steps that The Indian Government is taking to quell these protests are completely inexcusable.
 Shutting down Metro Stations, Imposing Section 144 and Preventing Internet/Mobile Access to prevent peaceful protests is excessive and should be illegal.
 At the moment, There is no internet in parts of UP - Sahranpur, Muzaffarnagar, Aligarh and Sambhal.</description>
@@ -38,8 +47,8 @@ At the moment, There is no internet in parts of UP - Sahranpur, Muzaffarnagar, A
       <pubDate>Tue, 11 Jun 2019 09:00:00 +0630</pubDate>
       
       <guid>https://www.calmdownkarm.com/technical/text-lessons/</guid>
-      <description>I&#39;ve been playing around with Common Crawl data lately - training some hindi language models. So I had about 25~ gigs of text to process, which I suppose is tiny compared to English Common Crawl (in the TB range); but it&#39;s right on the cusp of having to think a little bit on how to deal with it in the most efficient manner.
-The server I was running this on had some 40 odd CPU cores and like 400 Gigs of RAM, so I wasn&#39;t terribly worried.</description>
+      <description>I&amp;rsquo;ve been playing around with Common Crawl data lately - training some hindi language models. So I had about 25~ gigs of text to process, which I suppose is tiny compared to English Common Crawl (in the TB range); but it&amp;rsquo;s right on the cusp of having to think a little bit on how to deal with it in the most efficient manner.
+The server I was running this on had some 40 odd CPU cores and like 400 Gigs of RAM, so I wasn&amp;rsquo;t terribly worried.</description>
     </item>
     
     <item>
@@ -50,7 +59,7 @@ The server I was running this on had some 40 odd CPU cores and like 400 Gigs of 
       <guid>https://www.calmdownkarm.com/personal/splat/</guid>
       <description>Picture the idyllic, perfect day. Warm, but not overly so. Sunny, but not enough to be oppressive.
 Breathe.
-Picture the lush, beautiful green grass slowly rushing towards you as a stranger yells the phrase FLARE FLARE FLARE into your ear. In your mind, some remnant of a Michael Schumacher interview is telling you to relax your body because anything kept braced will break.You should be panicking, but strangely, you&#39;re extremely calm.</description>
+Picture the lush, beautiful green grass slowly rushing towards you as a stranger yells the phrase FLARE FLARE FLARE into your ear. In your mind, some remnant of a Michael Schumacher interview is telling you to relax your body because anything kept braced will break.You should be panicking, but strangely, you&amp;rsquo;re extremely calm.</description>
     </item>
     
     <item>
@@ -59,7 +68,7 @@ Picture the lush, beautiful green grass slowly rushing towards you as a stranger
       <pubDate>Fri, 31 May 2019 09:00:00 +0630</pubDate>
       
       <guid>https://www.calmdownkarm.com/technical/ml-not-math/</guid>
-      <description>Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there&#39;s an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-</description>
+      <description>Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there&amp;rsquo;s an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-</description>
     </item>
     
     <item>
@@ -77,7 +86,7 @@ Picture the lush, beautiful green grass slowly rushing towards you as a stranger
       <pubDate>Mon, 11 Mar 2019 09:00:00 +0600</pubDate>
       
       <guid>https://www.calmdownkarm.com/personal/migrations/</guid>
-      <description>For the second time in two years now, I&#39;ve decamped and moved cities. Unexpectedly, there&#39;s a fair amount of culture shock. In the past year I&#39;ve gotten accustomed to being in a very quiet city and Delhi is certainly not that. Plus I&#39;ve had relatives over, other relatives passing away and social obligations that I can&#39;t postpone, so things have been fairly busy; a far cry from how introverted I&#39;d become in Hyderabad.</description>
+      <description>For the second time in two years now, I&amp;rsquo;ve decamped and moved cities. Unexpectedly, there&amp;rsquo;s a fair amount of culture shock. In the past year I&amp;rsquo;ve gotten accustomed to being in a very quiet city and Delhi is certainly not that. Plus I&amp;rsquo;ve had relatives over, other relatives passing away and social obligations that I can&amp;rsquo;t postpone, so things have been fairly busy; a far cry from how introverted I&amp;rsquo;d become in Hyderabad.</description>
     </item>
     
     <item>
@@ -86,7 +95,7 @@ Picture the lush, beautiful green grass slowly rushing towards you as a stranger
       <pubDate>Sun, 30 Dec 2018 09:00:00 +0600</pubDate>
       
       <guid>https://www.calmdownkarm.com/personal/lazy-callbacks/</guid>
-      <description>Around this time last year, I had a few goals in mind for this year. However, I didn&#39;t exactly write them down - and as most of my friends will attest, my memory isn&#39;t the best, so I&#39;m kinda winging it.
+      <description>Around this time last year, I had a few goals in mind for this year. However, I didn&amp;rsquo;t exactly write them down - and as most of my friends will attest, my memory isn&amp;rsquo;t the best, so I&amp;rsquo;m kinda winging it.
   Jiu Jitsu - My biggest goal at the start of the year, was to get all the weird shit with my head sorted out so I could go back to doing jiu jitsu.</description>
     </item>
     
@@ -96,7 +105,7 @@ Picture the lush, beautiful green grass slowly rushing towards you as a stranger
       <pubDate>Tue, 04 Dec 2018 09:00:00 +0630</pubDate>
       
       <guid>https://www.calmdownkarm.com/technical/skepticism/</guid>
-      <description>This week, 2 small changes to the way I built two models resulted in an absurd boost of performance of both. To the extent where it doesn&#39;t even make sense for the models to be this good. The obvious conclusion then becomes that I&#39;ve made some mistake somewhere. Thing is, I have absolutely no idea where the mistake lies - but in the attempt to figure it out, I was forced to take a closer look at both the model and the data, aided by a healthy dose of skeptcisim towards what the models do and how good their performance can be.</description>
+      <description>This week, 2 small changes to the way I built two models resulted in an absurd boost of performance of both. To the extent where it doesn&amp;rsquo;t even make sense for the models to be this good. The obvious conclusion then becomes that I&amp;rsquo;ve made some mistake somewhere. Thing is, I have absolutely no idea where the mistake lies - but in the attempt to figure it out, I was forced to take a closer look at both the model and the data, aided by a healthy dose of skeptcisim towards what the models do and how good their performance can be.</description>
     </item>
     
     <item>
@@ -105,7 +114,7 @@ Picture the lush, beautiful green grass slowly rushing towards you as a stranger
       <pubDate>Tue, 16 Oct 2018 09:00:00 +0630</pubDate>
       
       <guid>https://www.calmdownkarm.com/technical/twitterbot/</guid>
-      <description>A project underway at the lab in IIITDelhi that I&#39;m volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn&#39;t had a chance to test our TwitterRESTHandler yet.</description>
+      <description>A project underway at the lab in IIITDelhi that I&amp;rsquo;m volunteering at involves collecting a decently large collection of tweets. The bot needs to run at regular intervals, hit the search API with a series of keywords and store the returned tweets. More than that, it needed to be written completely in python and fairly difficult for a bored undergrad to break. I chose Gramex - since I work for the company that builds it, and I hadn&amp;rsquo;t had a chance to test our TwitterRESTHandler yet.</description>
     </item>
     
     <item>
@@ -114,8 +123,8 @@ Picture the lush, beautiful green grass slowly rushing towards you as a stranger
       <pubDate>Sun, 16 Sep 2018 09:00:00 +0630</pubDate>
       
       <guid>https://www.calmdownkarm.com/technical/ssh-config/</guid>
-      <description>I&#39;m spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.
-So this time around, I&#39;m simply recreating each of the notebooks as quickly as I can, but ensuring that I&#39;m actually implementing everything myself as compared to just running cells in their notebooks</description>
+      <description>I&amp;rsquo;m spending most of this long discontinuous weekend to run through all the fast.ai notebooks - while I find this course really helped me get a theoretical understanding of what neural nets are and how they work, I find that it takes me an inordinate amount of time to produce actual code - probably due to the fact that I never wrote anything while doing the course.
+So this time around, I&amp;rsquo;m simply recreating each of the notebooks as quickly as I can, but ensuring that I&amp;rsquo;m actually implementing everything myself as compared to just running cells in their notebooks</description>
     </item>
     
     <item>
@@ -124,9 +133,9 @@ So this time around, I&#39;m simply recreating each of the notebooks as quickly 
       <pubDate>Fri, 10 Aug 2018 09:00:00 +0630</pubDate>
       
       <guid>https://www.calmdownkarm.com/technical/yoon-kim/</guid>
-      <description>This post is going to be a small repository of information about Yoon Kim&#39;s paper on using Convolutional Neural Networks for Sentence Classification.
+      <description>This post is going to be a small repository of information about Yoon Kim&amp;rsquo;s paper on using Convolutional Neural Networks for Sentence Classification.
   Arxiv Link
-  Author&#39;s Github Link
+  Author&amp;rsquo;s Github Link
   TODO: My pytorch implementation
   Yoon Kim and his team, talk about using Convolutional Neural Nets as a means for sentence classification - essentially, they create sentence vectors by taking word vectors and concatenating them together, then pass them through layers of convolutions or filters to create what they call a feature map, which is literally just a set of filter outputs.</description>
     </item>

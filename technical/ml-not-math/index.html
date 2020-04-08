@@ -2,16 +2,16 @@
 <html lang='en'><head>
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there&#39;s an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-'>
+<meta name='description' content='Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there&rsquo;s an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-'>
 <meta name='theme-color' content='#ffcd00'>
 
 <meta property='og:title' content='Machine Learning is NOT Math • Perpetual White Belt'>
-<meta property='og:description' content='Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there&#39;s an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-'>
+<meta property='og:description' content='Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there&rsquo;s an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-'>
 <meta property='og:url' content='https://www.calmdownkarm.com/technical/ml-not-math/'>
 <meta property='og:site_name' content='Perpetual White Belt'>
 <meta property='og:type' content='article'><meta property='article:section' content='Technical'><meta property='article:tag' content='Technical'><meta property='article:published_time' content='2019-05-31T09:00:00&#43;06:30'/><meta property='article:modified_time' content='2019-05-31T09:00:00&#43;06:30'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.61.0" />
+<meta name="generator" content="Hugo 0.68.3" />
 
   <title>Machine Learning is NOT Math • Perpetual White Belt</title>
   <link rel='canonical' href='https://www.calmdownkarm.com/technical/ml-not-math/'>
@@ -97,7 +97,7 @@
   
 
   <div class='container entry-content'>
-  <p>Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there's an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-</p>
+  <p>Machine Learning is firmly grounded in math - but why does it never feel like that day to day?. When I sit down to solve a math problem, not only is there a definitive answer, but more often than not there&rsquo;s an ideal way to approach the question. This ideal way never changes. When I sit down to solve an ML problem on the other hand, I always have to go through the same steps-</p>
 <ul>
 <li>Research to see what other people have done in the same problem,</li>
 <li>Collect a list of 3-4 approaches,</li>
@@ -105,12 +105,12 @@
 <li>Repeat with different approaches until something sticks.</li>
 </ul>
 <p>The same problem will often have a whole host of different solutions and I have really no way to determine which to pick.
-For example, if you look at the <a href="https://github.com/keon/awesome-nlp#text-embeddings">awesome nlp repository</a> you'll notice a thumb rule that says <code>fasttext &gt; glove &gt; word2vec</code>. On a surface level, I get that fasttext has subword information, so I won't need to worry about out of vocabulary words, because even if that word itself doesn't exist, the sequence of characters that make up that word will, and we'll be able to construct non random vectors anyway. Sounds great, but what if I'm using a library like <a href="https://github.com/plasticityai/magnitude">pymagnitude</a> which solves the out of vocabulary problem anyway? does the thumb rule still hold true? The only way I can answer that question reliably is if I knew why that thumb rule exists, and there's always a possibility that even the author doesn't know, it's just something anecdotal from their day to day experiments.</p>
+For example, if you look at the <a href="https://github.com/keon/awesome-nlp#text-embeddings">awesome nlp repository</a> you&rsquo;ll notice a thumb rule that says <code>fasttext &gt; glove &gt; word2vec</code>. On a surface level, I get that fasttext has subword information, so I won&rsquo;t need to worry about out of vocabulary words, because even if that word itself doesn&rsquo;t exist, the sequence of characters that make up that word will, and we&rsquo;ll be able to construct non random vectors anyway. Sounds great, but what if I&rsquo;m using a library like <a href="https://github.com/plasticityai/magnitude">pymagnitude</a> which solves the out of vocabulary problem anyway? does the thumb rule still hold true? The only way I can answer that question reliably is if I knew why that thumb rule exists, and there&rsquo;s always a possibility that even the author doesn&rsquo;t know, it&rsquo;s just something anecdotal from their day to day experiments.</p>
 <p>Rachael Tatman tweeted this the other day -</p>
 <!-- raw HTML omitted -->
-<p>What struck me is that each of the replies are different. Obviously if someone recommends LDA and UMAP over TF-IDF and spectral clustering it's because it worked better in their particular use case. Which leads me to think that even small changes in usecase can cause large variations in performance. What works well on twitter data may not be so good on reddit data. What's worse is that having a mathematical understanding of how the method works doesn't solve this problem either - just because I understand SVD and Matrix Factorization, I have really no way to tell LDA tends to work better on longer bodies of text.</p>
-<p>Because of stuff like this, I find myself having to go through this benchmarking process every time I start a new problem and that feels like a huge waste of time. Things get murkier when we're dealing with unsupervised techniques, because all of a sudden we no longer have clear cut metrics for performance and even on the same dataset, there are very few objective measures of how well a model performs. What this ends up meaning is that machine learning just isn't like math, and we shouldn't obsess over the math - because mathematical intuition may not necessarily bring us any closer to developing a sense of model performance. The model itself sometimes helps - understanding how random forests approaches a continous variable definitely helps me create rules of thumb, but at least in NLP things aren't always that obvious. Perhaps that's why people like Jeremy Howard call themselves machine learning practitioners - because the only thing that brings us closer to an intuition is to try a bunch of things until they work and then remember what we tried. In the past, I've tried to keep tabs in a physical notebook about some features from the dataset (lengths of sentences, distributions of classes, where the data was from, how it was collected etc) and this somewhat helps, because it'll give me directions in which to start my search from, but inevitably I'll end up running through a bunch of things until I'm satisfied.</p>
-<p>All I can say is I'm glad libraries like scikit-learn and pytorch exist that can make this process really simple and fast.</p>
+<p>What struck me is that each of the replies are different. Obviously if someone recommends LDA and UMAP over TF-IDF and spectral clustering it&rsquo;s because it worked better in their particular use case. Which leads me to think that even small changes in usecase can cause large variations in performance. What works well on twitter data may not be so good on reddit data. What&rsquo;s worse is that having a mathematical understanding of how the method works doesn&rsquo;t solve this problem either - just because I understand SVD and Matrix Factorization, I have really no way to tell LDA tends to work better on longer bodies of text.</p>
+<p>Because of stuff like this, I find myself having to go through this benchmarking process every time I start a new problem and that feels like a huge waste of time. Things get murkier when we&rsquo;re dealing with unsupervised techniques, because all of a sudden we no longer have clear cut metrics for performance and even on the same dataset, there are very few objective measures of how well a model performs. What this ends up meaning is that machine learning just isn&rsquo;t like math, and we shouldn&rsquo;t obsess over the math - because mathematical intuition may not necessarily bring us any closer to developing a sense of model performance. The model itself sometimes helps - understanding how random forests approaches a continous variable definitely helps me create rules of thumb, but at least in NLP things aren&rsquo;t always that obvious. Perhaps that&rsquo;s why people like Jeremy Howard call themselves machine learning practitioners - because the only thing that brings us closer to an intuition is to try a bunch of things until they work and then remember what we tried. In the past, I&rsquo;ve tried to keep tabs in a physical notebook about some features from the dataset (lengths of sentences, distributions of classes, where the data was from, how it was collected etc) and this somewhat helps, because it&rsquo;ll give me directions in which to start my search from, but inevitably I&rsquo;ll end up running through a bunch of things until I&rsquo;m satisfied.</p>
+<p>All I can say is I&rsquo;m glad libraries like scikit-learn and pytorch exist that can make this process really simple and fast.</p>
 
 </div>
 
@@ -207,7 +207,7 @@ For example, if you look at the <a href="https://github.com/keon/awesome-nlp#tex
       </li></ul>
   </nav>
 </section><div class='copyright'>
-  <p>Minimo Theme &copy; 2017-2019 MunifTanjim </p>
+  <p>Minimo Theme &copy; 2017-2020 MunifTanjim </p>
 </div>
 
         </div>

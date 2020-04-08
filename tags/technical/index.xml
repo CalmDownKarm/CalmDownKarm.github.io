@@ -16,7 +16,7 @@
       <pubDate>Thu, 09 Apr 2020 00:17:04 +0530</pubDate>
       
       <guid>https://www.calmdownkarm.com/technical/sentence-cnns-fast-ai/</guid>
-      <description>I&amp;rsquo;ve recently started a personal challenge to read and implement 20 papers inside of a month. This is mainly to get used to writing deep learning models again (I&amp;rsquo;ve spent most of the last few months doing web development for a couple of projects for the Delhi Government). Part of this is also to become more familiar with the PyTorch ecosystem and the tooling around it. Primarily - I&amp;rsquo;m trying to find the pytorch equivalent of Keras, wherein it removes a lot of the boilerplate I would traditionally have to write, but still giving me the transparency that Pytorch happens.</description>
+      <description>I&amp;rsquo;ve recently started a personal challenge to read and implement 20 papers inside of a month. This is mainly to get used to writing deep learning models again (I&amp;rsquo;ve spent most of the last few months doing web development for a couple of projects for the Delhi Government). Part of this is also to become more familiar with the PyTorch ecosystem and the tooling around it. Primarily - I&amp;rsquo;m trying to find the pytorch equivalent of Keras, wherein it removes a lot of the boilerplate I would traditionally have to write, but still giving me the transparency that Pytorch does.</description>
     </item>
     
     <item>

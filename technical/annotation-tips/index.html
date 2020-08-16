@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Multiple models trained on your data perform surprisingly poorly, despite having decent metrics on the validation set. The code seems fine, so you decide to take a closer look at your training data. You check a random sample - the label is wrong. So is the next. Your stomach sinks and you start looking through your data in batches*. Thirty minutes later, you realize that x% of your data is incorrect.'>
+<meta name='theme-color' content='#ffcd00'>
+
+<meta property='og:title' content='Creating a dataset sucks. Here&#39;s what I&#39;ve learned to make it a little bit easier. • Perpetual White Belt'>
+<meta property='og:description' content='Multiple models trained on your data perform surprisingly poorly, despite having decent metrics on the validation set. The code seems fine, so you decide to take a closer look at your training data. You check a random sample - the label is wrong. So is the next. Your stomach sinks and you start looking through your data in batches*. Thirty minutes later, you realize that x% of your data is incorrect.'>
+<meta property='og:url' content='https://www.calmdownkarm.com/technical/annotation-tips/'>
+<meta property='og:site_name' content='Perpetual White Belt'>
+<meta property='og:type' content='article'><meta property='article:section' content='Technical'><meta property='article:tag' content='Technical'><meta property='article:published_time' content='2020-08-16T19:03:55&#43;05:30'/><meta property='article:modified_time' content='2020-08-16T19:03:55&#43;05:30'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.63.1" />
+
+  <title>Creating a dataset sucks. Here&#39;s what I&#39;ve learned to make it a little bit easier. • Perpetual White Belt</title>
+  <link rel='canonical' href='https://www.calmdownkarm.com/technical/annotation-tips/'>
+  
+  
+  <link rel='icon' href='/images/something.ico'>
+<link rel='stylesheet' href='/assets/css/main.6a060eb7.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
+  
+
+</head>
+<body class='page type-Technical'>
+
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    
+    <ul><li class='item'>
+        <a href='/'>Home</a>
+      </li><li class='item'>
+        <a href='/technical/'>technical</a>
+      </li><li class='item'>
+        <a href='/nlp/'>NLP</a>
+      </li><li class='item'>
+        <a href='/personal/'>personal</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Perpetual White Belt</p><p class='desc site-desc'>Machine Learning, Data Visualization and Brazilian Jiu Jitsu</p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Creating a dataset sucks. Here&#39;s what I&#39;ve learned to make it a little bit easier.</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2020-08-16T19:03:55&#43;05:30'>2020, Aug 16</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+5 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  <p>Multiple models trained on your data perform surprisingly poorly, despite having decent metrics on the validation set. The code seems fine, so you decide to take a closer look at your training data. You check a random sample - the label is wrong. So is the next. Your stomach sinks and you start looking through your data in batches*. Thirty minutes later, you realize that x% of your data is incorrect.</p>
+<p>Unfortunately this I&rsquo;ve been in this situation a few too many times. Creating datasets is hard, even for relatively simple tasks like document classification/sentiment analysis etc. Not only do you have to worry about stuff like annotator bias, but label noise is insidious. You can measure label noise with annotator agreement metrics**, but even a relatively high agreement score can allow for ~10% of your data to be wrong. A good example of this is SST5, where classification performance is significantly worse than <a href="%5Bhttp://nlpprogress.com/english/sentiment_analysis.html%5D(http://nlpprogress.com/english/sentiment_analysis.html)">SST2</a></p>
+<p>This problem can be even worse if you don&rsquo;t have very clearly defined orthogonal classes - It&rsquo;s relatively easy to come up with a labelling scheme that has a large amount of overlap between classes - this normally results in a lot of variance between annotators as each annotator will overrepresent a single class. For example, if you&rsquo;re building sentiment analysis models for survey results, how do you deal with the fact that 30% of your data might have customers complaining about your after sales support but also complementing the fact that you&rsquo;re the most affordable option on the market? Do you switch to an aspect based sentiment approach? If not, do you mark that sample as neutral? Irrespective of the judgement call that you take, how do you ensure that the annotators can be aligned to take similar judgement calls?</p>
+<p>A lot of companies I&rsquo;ve done contract work for, default to Mturk for annotations. I think that this is a particularly bad idea - MTurk can be very unreliable and needs a lot of effort to ensure that you get high quality annotations. With MTurk, you don&rsquo;t have a strong ability to train the annotators and align them with your requirements, and while you can restrict the regions where you get workers from - you can&rsquo;t be sure that they have the kinds of information that you need without directly testing it. Finally, if you do decide to test it, how do you ensure that the care/attention the annotators pay to the qualification tests will be maintained through every sample that they annotate?</p>
+<p>In my experience, the best thing to do is hire a set of annotators. That&rsquo;s hard too, but once you eventually figure out the hiring, here&rsquo;s some things that I&rsquo;ve learned managing annotators.</p>
+<ol>
+<li><strong>Spend time training annotators</strong>. In particular, task specific training is super useful. The best way I&rsquo;ve found to do this, is to walk them through some sample annotations, give them a set to do independently and discuss what you think they could have done differently. I often need to do multiple iterations of this. Additionally, spending time communicating the overall project idea and helping them understand just how important the task is (despite the peanuts they&rsquo;re paid) leads to better results.</li>
+<li><strong>Put a lot of effort into your annotation guidelines</strong>. The easiest way to do this is to annotate a few hundred samples manually and document your thought process. I&rsquo;ve found that drawing decision trees for a set of samples really helps communicate the thought process.</li>
+<li><strong>Prepare to do annotations in cycles</strong>. Very often, getting a minimal set of data annotated, and trying to build models on it, will help target the specific kinds of annotated data that you need, or even bad classifiers can help filter through a lot of data and save you annotation time. Annotating a lot of data all at once limits the kinds of things you can do with the data.</li>
+<li><strong>In cases where you can&rsquo;t directly calculate agreement, figure out ways to test annotators at irregular intervals</strong>. For example, <a href="%5Bhttps://www.mitpressjournals.org/doi/full/10.1162/tacl_a_00282%5D(https://www.mitpressjournals.org/doi/full/10.1162/tacl_a_00282)">Napoles et al</a> used human annotators to rate how well an error correction system was working and they would present samples that they knew had errors in them at regular intervals to check if the annotators were paying enough attention.</li>
+<li><strong>Frequent deadlines/followups</strong> - I used to like to expect a throughput of N samples/week. This led to significantly lower quality as they would rush to complete a week&rsquo;s worth of samples in a day or less and make a lot of mistakes. Frequent check-ins every two to three days helps. I&rsquo;ve toyed with the idea of having the annotators use a web app and track database insertions to flag large spikes in activity - but for the moment it seems a little Orwellian.</li>
+<li><strong>Pick the right tooling</strong>. I&rsquo;ve been a big fan of using just straight Google Docs/Excel etc because it seemed like the most straightforward solution, but when you have multiple annotators hopping on and off the project, a large pool of unlabelled data that needs to be stratified along multiple factors and also need to maintain a specific overlap between annotators handling all the different sheets is a nightmare. A lot of annotation tools exist - they all mostly do the same thing and they&rsquo;re all relatively inflexible. Roll your own if you have to, it&rsquo;s relatively easy with whatever web framework you&rsquo;re familiar with.</li>
+<li><strong>Annotator Overlap</strong> <a href="%5Bhttps://www.aclweb.org/anthology/2020.acl-main.626.pdf%5D(https://www.aclweb.org/anthology/2020.acl-main.626.pdf)">Roit et al</a> Recommend having pairs of three annotators - where two annotators create the annotation, and a third annotator consolidates the samples to create the golden set. Unfortunately this didn&rsquo;t work for our lab in practice - we found that the individual that we had consolidate annotations was rather unreliable.</li>
+</ol>
+<hr>
+<p>*This is a decent way to get an idea of your data, you essentially figure out number of errors per batch and evaluate as many batches as you need to until you get a stable average value. You can then run a significance test to make sure that the average is representative if you want to be very thorough, but it usually is.</p>
+<p>**Agreement metrics essentially evaluate what proportion of your labels annotators agree about after adjusting for agreement based on pure chance.</p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/technical/'>Technical</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/technical/sentence-cnns-fast-ai/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Hacking Fastai v1, Sentence CNNs for Sentiment Classification</a>
+    </div></div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/calmdownkarm' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/karmanya' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:karmanyaaggarwal@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/calmdownkarm' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://scholar.google.com/citations?user=A0d2Ji8AAAAJ' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Google_scholar account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M21.328 2.002v9.2M8.695 7.85c.014-.787-.11-2.236.28-2.89.623-1.045.856-1.39 1.797-1.989 1.953-.988 4.296.692 4.296.692.803.564 1.672 2.1 1.672 2.1l1.368-1.824-5.444-1.754-3.515 1.34L6.08 7.681m9.109 3.42s.65-.633 1.168-1.085c.461-.402.516-.714.6-.914.18-.426.268-.909.268-1.446 0-.7-.131-1.274-.388-1.735-.031-.053 0 0-.097-.157l4.588-3.762H10.32L3.672 7.85l5.023-.024c.23 1.237.619 1.575 1.019 2.222.744.719 1.13 1.194 2.215 1.194.254 0 2.6-.057 2.842-.09 0 0 .546 1.199-.133 1.71-.41.31.576 1.304.576 1.304s-5.577.831-6.523 1.427a4.13 4.13 0 0 0-1.306 1.277 3.034 3.034 0 0 0-.493 1.665c0 .502.106.955.32 1.357.214.403.493.733.84.99.345.258.744.473 1.194.649.45.174.896.297 1.342.367a8.348 8.348 0 0 0 3.41-.166 7.754 7.754 0 0 0 1.964-.807 4.28 4.28 0 0 0 1.49-1.443c.38-.609.57-1.292.57-2.049 0-.574-.116-1.096-.347-1.57a3.755 3.755 0 0 0-.847-1.164c-.335-.302-2.19-1.837-2.19-1.837"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p>Minimo Theme &copy; 2017-2020 MunifTanjim </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.67d669ac.js'></script><script src='/js/custom.js'></script>
+
+</body>
+
+</html>
+

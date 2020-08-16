@@ -5,10 +5,19 @@
     <link>https://www.calmdownkarm.com/tags/technical/</link>
     <description>Recent content in Technical on Perpetual White Belt</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 09 Apr 2020 00:17:04 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2020 19:03:55 +0530</lastBuildDate>
     
 	<atom:link href="https://www.calmdownkarm.com/tags/technical/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Creating a dataset sucks. Here&#39;s what I&#39;ve learned to make it a little bit easier.</title>
+      <link>https://www.calmdownkarm.com/technical/annotation-tips/</link>
+      <pubDate>Sun, 16 Aug 2020 19:03:55 +0530</pubDate>
+      
+      <guid>https://www.calmdownkarm.com/technical/annotation-tips/</guid>
+      <description>Multiple models trained on your data perform surprisingly poorly, despite having decent metrics on the validation set. The code seems fine, so you decide to take a closer look at your training data. You check a random sample - the label is wrong. So is the next. Your stomach sinks and you start looking through your data in batches*. Thirty minutes later, you realize that x% of your data is incorrect.</description>
+    </item>
     
     <item>
       <title>Hacking Fastai v1, Sentence CNNs for Sentiment Classification</title>

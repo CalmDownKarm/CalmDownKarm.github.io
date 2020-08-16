@@ -5,7 +5,7 @@
     <link>https://www.calmdownkarm.com/</link>
     <description>Recent content in Home on Perpetual White Belt</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 09 Apr 2020 00:17:04 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2020 19:03:55 +0530</lastBuildDate>
     
 	<atom:link href="https://www.calmdownkarm.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,15 @@
       <guid>https://www.calmdownkarm.com/nlp/</guid>
       <description>This page is primarily intended to document my notes about NLP, and be an aggregator of links that I&amp;rsquo;d like to remember.
 My Blog Posts  CNNs for NLP using fastai  Useful External Links  indicnlp and inltk CS224n Deep Learning for NLP by Christopher Manning - Currently going through this, really amazing course, enjoying learning some of the math going on behind the scene Distill&amp;rsquo;s post on Memorization in RNNs and LSTMs, their post on Attention - Distill is indubitably the gold standard in ml explanations today.</description>
+    </item>
+    
+    <item>
+      <title>Creating a dataset sucks. Here&#39;s what I&#39;ve learned to make it a little bit easier.</title>
+      <link>https://www.calmdownkarm.com/technical/annotation-tips/</link>
+      <pubDate>Sun, 16 Aug 2020 19:03:55 +0530</pubDate>
+      
+      <guid>https://www.calmdownkarm.com/technical/annotation-tips/</guid>
+      <description>Multiple models trained on your data perform surprisingly poorly, despite having decent metrics on the validation set. The code seems fine, so you decide to take a closer look at your training data. You check a random sample - the label is wrong. So is the next. Your stomach sinks and you start looking through your data in batches*. Thirty minutes later, you realize that x% of your data is incorrect.</description>
     </item>
     
     <item>

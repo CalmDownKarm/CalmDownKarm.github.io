@@ -5,11 +5,7 @@
     <link>https://www.calmdownkarm.com/</link>
     <description>Recent content in Home on Perpetual White Belt</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 16 Aug 2020 19:03:55 +0530</lastBuildDate>
-    
-	<atom:link href="https://www.calmdownkarm.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 26 Apr 2021 00:00:00 +0530</lastBuildDate><atom:link href="https://www.calmdownkarm.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NLP</title>
       <link>https://www.calmdownkarm.com/nlp/</link>
@@ -21,12 +17,13 @@ My Blog Posts  CNNs for NLP using fastai  Useful External Links  indicnlp and in
     </item>
     
     <item>
-      <title>Creating a dataset sucks. Here&#39;s what I&#39;ve learned to make it a little bit easier.</title>
-      <link>https://www.calmdownkarm.com/technical/annotation-tips/</link>
-      <pubDate>Sun, 16 Aug 2020 19:03:55 +0530</pubDate>
+      <title>Exhaustion</title>
+      <link>https://www.calmdownkarm.com/personal/exhaustion/</link>
+      <pubDate>Mon, 26 Apr 2021 00:00:00 +0530</pubDate>
       
-      <guid>https://www.calmdownkarm.com/technical/annotation-tips/</guid>
-      <description>Multiple models trained on your data perform surprisingly poorly, despite having decent metrics on the validation set. The code seems fine, so you decide to take a closer look at your training data. You check a random sample - the label is wrong. So is the next. Your stomach sinks and you start looking through your data in batches*. Thirty minutes later, you realize that x% of your data is incorrect.</description>
+      <guid>https://www.calmdownkarm.com/personal/exhaustion/</guid>
+      <description>I&amp;rsquo;m exhausted. Since last Thursday, I&amp;rsquo;ve been working during the day, spending about 40% of my time taking care of my grandparents and spending my nights scrambling for resources. Tracking down oxygen, ventilators, hospital beds, home ICUs and god only knows what else.
+My experience through covid so far had mainly been very sheltered. Last year, when the lockdowns were about to be announced, I grabbed a monitor from my desk at IIIT Delhi, moved in with my grandparents, and continued to live my life as a shutin.</description>
     </item>
     
     <item>

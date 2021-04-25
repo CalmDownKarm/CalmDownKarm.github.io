@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='Perpetual White Belt'>
 <meta property='og:type' content='article'><meta property='article:section' content='Technical'><meta property='article:tag' content='Technical'><meta property='article:published_time' content='2018-12-04T09:00:00&#43;06:30'/><meta property='article:modified_time' content='2018-12-04T09:00:00&#43;06:30'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.63.1" />
+<meta name="generator" content="Hugo 0.80.0" />
 
   <title>Healthy Dose of Skepticism with Machine Learning • Perpetual White Belt</title>
   <link rel='canonical' href='https://www.calmdownkarm.com/technical/skepticism/'>
@@ -99,13 +99,13 @@
   <div class='container entry-content'>
   <p>This week, 2 small changes to the way I built two models resulted in an absurd boost of performance of both. To the extent where it doesn&rsquo;t even make sense for the models to be this good. The obvious conclusion then becomes that I&rsquo;ve made some mistake somewhere. Thing is, I have absolutely no idea where the mistake lies - but in the attempt to figure it out, I was forced to take a closer look at both the model and the data, aided by a healthy dose of skeptcisim towards what the models do and how good their performance can be.</p>
 <h3 id="problem-1-the-ufc-fight-classifier">Problem 1, The UFC Fight Classifier</h3>
-<p>This is a pet project a close friend and I have been working on since our third year of undergrad - for a given fight, can we predict the winner using each fighters&rsquo; tendencies?. To do this, we built up a dataset by scraping the UFC Website( The UFC gets its data from an org. called FightMetric LLC) which has an unsecured API that you can query and get JSON results back about every single UFC fight since 2003, with a round-wise breakdown of the strikes, takedowns and defenses used by each fighter.
+<p>This is a pet project a close friend and I have been working on since our third year of undergrad - for a given fight, can we predict the winner using each fighters' tendencies?. To do this, we built up a dataset by scraping the UFC Website( The UFC gets its data from an org. called FightMetric LLC) which has an unsecured API that you can query and get JSON results back about every single UFC fight since 2003, with a round-wise breakdown of the strikes, takedowns and defenses used by each fighter.
 Given this information, we took each fight and worked our way backwards - figuring out what their average number of strikes, takedowns, defenses were per fight that they had been. This turned out to be a potential mistake in isolation, since averages are a resistant to change over a small number of fights, however, the idea was to create a &lsquo;fingerprint&rsquo; of the fighter&rsquo;s style; are fighters that use a lot of volume more or less likely to win fights?
 What about grapplers vs boxing/kickboxing/muay thai specialists?
 We attempted to create a few other features -</p>
 <ul>
 <li>how long a current win streak was; this feature turned out to be useless, the vast majority of these were 1 fight streaks.</li>
-<li>how many fights has a fighter been in; also useless, this feature turned out to be a proxy for fighters&rsquo; ages, which are obviously a really important feature for any sport.</li>
+<li>how many fights has a fighter been in; also useless, this feature turned out to be a proxy for fighters' ages, which are obviously a really important feature for any sport.</li>
 </ul>
 <p>While we were in our undergrad, neither of us had a good enough understanding of what we were doing, thus, essentially we went through the motions in a very robotic fashion; take the data, use randomforests/correlation to figure out important features, throw this reduced set of features through every single model we&rsquo;d heard of and compare their results. Nothing really helped - we had like 52-53% prediction accuracy on a dataset where the red side fighter won 60~% of the time. The Red fighter&rsquo;s age was significantly more important than anything else in our dataset, and everything else is about equally important. At the time we had a few thousand fights. Cue this semester when my friend was taking a machine learning class during his Phd and wanted to work on improving this project. The dataset had increased in size - we had about 2k fights now, however, the same models and processes only improved our prediction accuracy about 3% - we were consisttently getting about 56% now, better than before but still nothing to write home about. This time around though, a few more features started to become important - The fighters ages were still important, but the red fighter&rsquo;s statistics - whether it was striking or takedowns or whatever dominated the top 10 most important features. Which led us to believe that perhaps the models are overfitting rather heavily on the red side fighter - after all, 60% of the victories in the dataset belonged to the red side fighter. Cue crazy idea, we took our dataset - swapped the red and blue fighter statistics, replaced the winner column appropriately and added it to the dataset. To call this data augmentation is a bit of a stretch, essentially all we&rsquo;ve done is change out the labels and duplicate all our training data. However, when we did this, our accuracies suddenly shot up to 92% (After 10-fold Cross Validation) for an untuned model. Before you ask, the F1 was .84 and you can judge the ROC Curve for yourself.
 <img src="/images/ROCurve.png" alt="UFC ROC Curve"></p>
@@ -211,7 +211,7 @@ Essentially the point I&rsquo;m trying to make is that I find it necessary to sp
       </li></ul>
   </nav>
 </section><div class='copyright'>
-  <p>Minimo Theme &copy; 2017-2020 MunifTanjim </p>
+  <p>Minimo Theme &copy; 2017-2021 MunifTanjim </p>
 </div>
 
         </div>
